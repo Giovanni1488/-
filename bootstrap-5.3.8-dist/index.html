@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Найденные питомцы - Главная</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!-- Навигация -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <i class="bi bi-heart-pulse"></i> НайденныеПитомцы
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="found.html">Найдены</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="lost.html">Потеряны</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="help.html">Помощь</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contacts.html">Контакты</a>
+                </li>
+            </ul>
+            <div class="d-flex">
+                <!-- Для неавторизованных пользователей -->
+                <div id="guestButtons">
+                    <a href="login.html" class="btn btn-outline-primary">
+                        <i class="bi bi-person"></i> Войти
+                    </a>
+                </div>
+                
+                <!-- Для авторизованных пользователей -->
+                <div id="userButtons" style="display: none;">
+                    <a href="add-pet.html" class="btn btn-primary me-2">
+                        <i class="bi bi-plus-circle"></i> Разместить объявление
+                    </a>
+                    <a href="profile.html" class="btn btn-outline-primary me-2">
+                        <i class="bi bi-person-circle"></i> Личный кабинет
+                    </a>
+                    <a href="#" class="btn btn-outline-primary" onclick="logout()">
+                        <i class="bi bi-box-arrow-right"></i> Выйти
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+  <!-- Слайдер -->
+<div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
+    </div>
+    <div class="carousel-inner">
+        <!-- Слайд 1 -->
+        <div class="carousel-item active">
+            <img src="slider1.jfif" class="d-block w-100" alt="Найденный питомец" width="100%" height="500px">
+            <div class="carousel-caption">
+                <h2>Помогите найти дом</h2>
+                <p>Каждый день мы находим питомцев, которые ищут своих хозяев или новый дом.</p>
+                <a href="found.html" class="btn btn-primary btn-lg">Помочь сейчас</a>
+            </div>
+        </div>
+        <!-- Слайд 2 -->
+<div class="carousel-item">
+    <img src="slider2.jfif" class="d-block w-100" alt="Найденный питомец" width="100%" height="500px">
+    <div class="carousel-caption">
+        <h2>Потеряли питомца?</h2>
+        <p>Разместите объявление о пропаже, и мы поможем в поисках.</p>
+        <a href="add-pet.html" class="btn btn-primary btn-lg">Разместить объявление</a>
+    </div>
+</div>
+        <!-- Слайд 3 -->
+        <div class="carousel-item">
+            <img src="slider3.jfif" class="d-block w-100" alt="Найденный питомец" width="100%" height="500px">
+            <div class="carousel-caption">
+                <h2>Станьте волонтером</h2>
+                <p>Присоединяйтесь к нашей команде и помогайте животным обрести дом.</p>
+                <a href="register.html" class="btn btn-primary btn-lg">Зарегистрироваться</a>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+
+    <!-- Статистика -->
+    <section class="stats-section py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3 col-6">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="bi bi-search-heart"></i>
+                        </div>
+                        <div class="stat-number" data-count="1248">0</div>
+                        <div class="stat-label">Найдено питомцев</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="bi bi-house-heart"></i>
+                        </div>
+                        <div class="stat-number" data-count="894">0</div>
+                        <div class="stat-label">Воссоединено с хозяевами</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="bi bi-heart"></i>
+                        </div>
+                        <div class="stat-number" data-count="354">0</div>
+                        <div class="stat-label">Нашли новый дом</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="bi bi-binoculars"></i>
+                        </div>
+                        <div class="stat-number" data-count="127">0</div>
+                        <div class="stat-label">Ищут дом сейчас</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Быстрый поиск -->
+    <section class="search-section py-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="search-card">
+                        <h3 class="text-center mb-4">Найти питомца</h3>
+                        <form class="search-form">
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <label class="form-label">Тип животного</label>
+                                    <select class="form-select">
+                                        <option selected>Любой</option>
+                                        <option>Собака</option>
+                                        <option>Кошка</option>
+                                        <option>Птица</option>
+                                        <option>Грызун</option>
+                                        <option>Другое</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">Статус</label>
+                                    <select class="form-select">
+                                        <option selected>Любой</option>
+                                        <option>Найден</option>
+                                        <option>Потерян</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">Город</label>
+                                    <select class="form-select">
+                                        <option selected>Любой</option>
+                                        <option>Москва</option>
+                                        <option>Санкт-Петербург</option>
+                                        <option>Новосибирск</option>
+                                        <option>Екатеринбург</option>
+                                        <option>Казань</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 text-center mt-3">
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="bi bi-search me-2"></i>Найти питомца
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Срочные случаи -->
+    <section class="urgent-section py-5">
+        <div class="container">
+            <div class="section-header">
+                <h2>Срочные случаи</h2>
+                <p>Питомцы, которым нужна помощь прямо сейчас</p>
+            </div>
+            <div class="row g-4">
+                <!-- Карточка 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="pet-card urgent">
+                        <div class="pet-image">
+                            <img src="kot.jfif" alt="Рыжий кот">
+                            <span class="urgent-badge"></span>
+                        </div>
+                        <div class="pet-info">
+                            <div class="pet-header">
+                                <h5>Рыжий кот</h5>
+                                <span class="status-badge found">Найден</span>
+                            </div>
+                            <p class="pet-description">Найден в районе Центрального парка. Требуется ветеринарная помощь.</p>
+                            <div class="pet-meta">
+                                <span><i class="bi bi-geo-alt"></i> Москва</span>
+                                <span><i class="bi bi-clock"></i> 2 часа назад</span>
+                            </div>
+                            <div class="pet-actions">
+                                <a href="#" class="btn btn-primary">Помочь</a>
+                                <a href="#" class="btn btn-outline-primary">Подробнее</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Карточка 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="pet-card">
+                        <div class="pet-image">
+                            <img src="dog.jpg" alt="Джек">
+                        </div>
+                        <div class="pet-info">
+                            <div class="pet-header">
+                                <h5>Джек</h5>
+                                <span class="status-badge lost">Потерян</span>
+                            </div>
+                            <p class="pet-description">Пропал в районе Ленинского проспекта. Откликается на кличку, очень дружелюбный.</p>
+                            <div class="pet-meta">
+                                <span><i class="bi bi-geo-alt"></i> Санкт-Петербург</span>
+                                <span><i class="bi bi-clock"></i> 1 день назад</span>
+                            </div>
+                            <div class="pet-actions">
+                                <a href="#" class="btn btn-primary">Помочь</a>
+                                <a href="#" class="btn btn-outline-primary">Подробнее</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Карточка 3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="pet-card">
+                        <div class="pet-image">
+                            <img src="kot2.jfif" alt="Мурка">
+                        </div>
+                        <div class="pet-info">
+                            <div class="pet-header">
+                                <h5>Мурка</h5>
+                                <span class="status-badge found">Найден</span>
+                            </div>
+                            <p class="pet-description">Найдена в подъезде на ул. Гагарина. Молодая кошка, ищет хозяев или новый дом.</p>
+                            <div class="pet-meta">
+                                <span><i class="bi bi-geo-alt"></i> Новосибирск</span>
+                                <span><i class="bi bi-clock"></i> 3 дня назад</span>
+                            </div>
+                            <div class="pet-actions">
+                                <a href="#" class="btn btn-primary">Помочь</a>
+                                <a href="#" class="btn btn-outline-primary">Подробнее</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-brand">
+                        <i class="bi bi-heart-pulse"></i> НайденныеПитомцы
+                    </div>
+                    <p class="footer-text">Помогаем питомцам найти дом с 2015 года. Присоединяйтесь к нашему сообществу!</p>
+                    <div class="social-links">
+                        <a href="#"><i class="bi bi-telegram"></i></a>
+                        <a href="#"><i class="bi bi-vk"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 mb-4">
+                    <h5>Навигация</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="found.html">Найдены</a></li>
+                        <li><a href="lost.html">Потеряны</a></li>
+                        <li><a href="shelters.html">Приюты</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-3 mb-4">
+                    <h5>Помощь</h5>
+                    <ul class="footer-links">
+                        <li><a href="help.html">Частые вопросы</a></li>
+                        <li><a href="help.html">Советы</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                        <li><a href="help.html">Волонтерам</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Подписка на новости</h5>
+                    <p>Узнавайте о новых найденных питомцах первыми</p>
+                    <form class="subscribe-form">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Ваш email">
+                            <button class="btn btn-primary" type="submit">Подписаться</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>&copy; 2023 НайденныеПитомцы. Все права защищены.</p>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <a href="#">Политика конфиденциальности</a>
+                        <a href="#">Условия использования</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно добавления объявления -->
+    <div class="modal fade" id="addPetModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Добавить объявление</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Тип объявления</label>
+                                <select class="form-select" required>
+                                    <option value="" selected disabled>Выберите тип</option>
+                                    <option>Найден питомец</option>
+                                    <option>Потерян питомец</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Вид животного</label>
+                                <select class="form-select" required>
+                                    <option value="" selected disabled>Выберите вид</option>
+                                    <option>Собака</option>
+                                    <option>Кошка</option>
+                                    <option>Птица</option>
+                                    <option>Грызун</option>
+                                    <option>Другое</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Описание</label>
+                                <textarea class="form-control" rows="3" placeholder="Опишите питомца и обстоятельства" required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Фотография</label>
+                                <input type="file" class="form-control" accept="image/*">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Город</label>
+                                <input type="text" class="form-control" placeholder="Город" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Район</label>
+                                <input type="text" class="form-control" placeholder="Район">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Контактный телефон</label>
+                                <input type="tel" class="form-control" placeholder="+7 (999) 123-45-67" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                    <button type="button" class="btn btn-primary">Добавить объявление</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- Модальное окно добавления объявления -->
+     <div class="modal fade" id="addPetModal" tabindex="-1">
+        <!-- содержимое модального окна -->
+    </div>
+    <script>
+        // Автоматический вход при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            const guestButtons = document.getElementById('guestButtons');
+            const userButtons = document.getElementById('userButtons');
+            
+            if (guestButtons && userButtons) {
+                guestButtons.style.display = 'none';
+                userButtons.style.display = 'flex';
+            }
+        });
+        
+        function logout() {
+            if (confirm('Вы уверены, что хотите выйти?')) {
+                window.location.reload();
+            }
+        }
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/auth-simple.js"></script>
+</body>
+</html>

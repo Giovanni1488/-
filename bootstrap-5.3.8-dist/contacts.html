@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Найденные питомцы - Контакты</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-heart-pulse"></i> НайденныеПитомцы
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="found.html">Найдены</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="lost.html">Потеряны</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="help.html">Помощь</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contacts.html">Контакты</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <!-- Для неавторизованных пользователей -->
+                    <div id="guestButtons">
+                        <a href="login.html" class="btn btn-outline-primary">
+                            <i class="bi bi-person"></i> Войти
+                        </a>
+                    </div>
+                    
+                    <!-- Для авторизованных пользователей -->
+                    <div id="userButtons" style="display: none;">
+                        <a href="profile.html" class="btn btn-outline-primary me-2">
+                            <i class="bi bi-person-circle"></i> Личный кабинет
+                        </a>
+                        <a href="#" class="btn btn-primary" onclick="logout()">
+                            <i class="bi bi-box-arrow-right"></i> Выйти
+                        </a>
+                    </div>
+                </div>
+    </nav>
+
+    <!-- Заголовок страницы -->
+    <section class="page-header py-5 bg-warning text-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="display-4 fw-bold">Контакты</h1>
+                    <p class="lead">Свяжитесь с нами любым удобным способом</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контактная информация -->
+    <section class="contact-info py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <div class="contact-card text-center">
+                        <div class="contact-icon">
+                            <i class="bi bi-telephone"></i>
+                        </div>
+                        <h4>Телефон</h4>
+                        <p class="contact-detail">+7 (800) 123-45-67</p>
+                        <p class="text-muted">Бесплатный звонок по России</p>
+                        <p class="contact-hours">Ежедневно с 9:00 до 21:00</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="contact-card text-center">
+                        <div class="contact-icon">
+                            <i class="bi bi-envelope"></i>
+                        </div>
+                        <h4>Email</h4>
+                        <p class="contact-detail">help@foundpets.ru</p>
+                        <p class="text-muted">Основной email для связи</p>
+                        <p class="contact-hours">Отвечаем в течение 24 часов</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="contact-card text-center">
+                        <div class="contact-icon">
+                            <i class="bi bi-chat-dots"></i>
+                        </div>
+                        <h4>Онлайн-чат</h4>
+                        <p class="contact-detail">Доступен на сайте</p>
+                        <p class="text-muted">Быстрые ответы на вопросы</p>
+                        <p class="contact-hours">Круглосуточно</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Форма обратной связи -->
+    <section class="contact-form py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="section-header text-center">
+                        <h2>Форма обратной связи</h2>
+                        <p>Задайте вопрос или оставьте предложение</p>
+                    </div>
+
+                    <form class="needs-validation" novalidate>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">Ваше имя *</label>
+                                <input type="text" class="form-control" id="name" required>
+                                <div class="invalid-feedback">
+                                    Пожалуйста, введите ваше имя.
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email *</label>
+                                <input type="email" class="form-control" id="email" required>
+                                <div class="invalid-feedback">
+                                    Пожалуйста, введите корректный email.
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="subject" class="form-label">Тема сообщения</label>
+                                <select class="form-select" id="subject">
+                                    <option selected>Выберите тему...</option>
+                                    <option>Вопрос о найденном питомце</option>
+                                    <option>Помощь в поиске потерянного питомца</option>
+                                    <option>Волонтерство</option>
+                                    <option>Партнерство</option>
+                                    <option>Техническая поддержка</option>
+                                    <option>Другое</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="message" class="form-label">Сообщение *</label>
+                                <textarea class="form-control" id="message" rows="5" required></textarea>
+                                <div class="invalid-feedback">
+                                    Пожалуйста, введите ваше сообщение.
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="agree" required>
+                                    <label class="form-check-label" for="agree">
+                                        Я соглашаюсь с обработкой персональных данных
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        Вы должны согласиться перед отправкой.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">Отправить сообщение</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Частые контакты -->
+    <section class="quick-contacts py-5">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Экстренные контакты</h2>
+                <p>Важные телефоны для экстренных ситуаций</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="emergency-contact">
+                        <div class="emergency-header">
+                            <i class="bi bi-ambulance"></i>
+                            <h5>Скорая ветеринарная помощь</h5>
+                        </div>
+                        <p>Круглосуточные службы экстренной ветеринарной помощи</p>
+                        <ul class="contact-list">
+                            <li><strong>Москва:</strong> +7 (495) 123-45-67</li>
+                            <li><strong>СПб:</strong> +7 (812) 234-56-78</li>
+                            <li><strong>Общий:</strong> 112 (с мобильного)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="emergency-contact">
+                        <div class="emergency-header">
+                            <i class="bi bi-shield-exclamation"></i>
+                            <h5>Службы отлова животных</h5>
+                        </div>
+                        <p>Для случаев, когда животное представляет опасность</p>
+                        <ul class="contact-list">
+                            <li><strong>Москва:</strong> +7 (495) 777-77-77</li>
+                            <li><strong>СПб:</strong> +7 (812) 333-33-33</li>
+                            <li><strong>Экстренный:</strong> 112</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Социальные сети -->
+    <section class="social-section py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h3>Мы в социальных сетях</h3>
+                    <p class="mb-0">Подписывайтесь на наши страницы, чтобы быть в курсе последних новостей</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="social-buttons">
+                        <a href="#" class="btn btn-light me-3">
+                            <i class="bi bi-telegram me-2"></i>Telegram
+                        </a>
+                        <a href="#" class="btn btn-light me-3">
+                            <i class="bi bi-vk me-2"></i>ВКонтакте
+                        </a>
+                        <a href="#" class="btn btn-light">
+                            <i class="bi bi-instagram me-2"></i>Instagram
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-brand">
+                        <i class="bi bi-heart-pulse"></i> НайденныеПитомцы
+                    </div>
+                    <p class="footer-text">Помогаем питомцам найти дом с 2015 года. Присоединяйтесь к нашему сообществу!</p>
+                    <div class="social-links">
+                        <a href="#"><i class="bi bi-telegram"></i></a>
+                        <a href="#"><i class="bi bi-vk"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 mb-4">
+                    <h5>Навигация</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="found.html">Найдены</a></li>
+                        <li><a href="lost.html">Потеряны</a></li>
+                        <li><a href="shelters.html">Приюты</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-3 mb-4">
+                    <h5>Помощь</h5>
+                    <ul class="footer-links">
+                        <li><a href="help.html">Частые вопросы</a></li>
+                        <li><a href="help.html">Советы</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                        <li><a href="help.html">Волонтерам</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Подписка на новости</h5>
+                    <p>Узнавайте о новых найденных питомцах первыми</p>
+                    <form class="subscribe-form">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Ваш email">
+                            <button class="btn btn-primary" type="submit">Подписаться</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>&copy; 2023 НайденныеПитомцы. Все права защищены.</p>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <a href="#">Политика конфиденциальности</a>
+                        <a href="#">Условия использования</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/auth-simple.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        simpleAuth.updateUI();
+    });
+</script>
+<script src="js/auth-simple.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (window.simpleAuth) {
+            window.simpleAuth.updateUI();
+        }
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Автоматический вход при загрузке страницы
+    document.addEventListener('DOMContentLoaded', function() {
+        const guestButtons = document.getElementById('guestButtons');
+        const userButtons = document.getElementById('userButtons');
+        
+        if (guestButtons && userButtons) {
+            guestButtons.style.display = 'none';
+            userButtons.style.display = 'flex';
+        }
+    });
+
+    function logout() {
+        if (confirm('Вы уверены, что хотите выйти?')) {
+            window.location.href = 'index.html';
+        }
+    }
+</script>
+<script src="js/auth-simple.js"></script>
+</body>
+</html>

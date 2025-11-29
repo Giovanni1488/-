@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Найденные питомцы - Потеряны</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-heart-pulse"></i> НайденныеПитомцы
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="found.html">Найдены</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="lost.html">Потеряны</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="help.html">Помощь</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacts.html">Контакты</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <!-- Для неавторизованных пользователей -->
+                    <div id="guestButtons">
+                        <a href="login.html" class="btn btn-outline-primary">
+                            <i class="bi bi-person"></i> Войти
+                        </a>
+                    </div>
+                    
+                    <!-- Для авторизованных пользователей -->
+                    <div id="userButtons" style="display: none;">
+                        <a href="profile.html" class="btn btn-outline-primary me-2">
+                            <i class="bi bi-person-circle"></i> Личный кабинет
+                        </a>
+                        <a href="#" class="btn btn-primary" onclick="logout()">
+                            <i class="bi bi-box-arrow-right"></i> Выйти
+                        </a>
+                    </div>
+                </div>
+    </nav>
+
+    <!-- Заголовок страницы -->
+    <section class="page-header py-5 bg-danger text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="display-4 fw-bold">Потерянные питомцы</h1>
+                    <p class="lead">Помогите найти пропавших питомцев и вернуть их домой</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Экстренная помощь -->
+    <section class="emergency-help py-4 bg-light">
+        <div class="container">
+            <div class="alert alert-warning d-flex align-items-center">
+                <i class="bi bi-exclamation-triangle-fill me-3 fs-4"></i>
+                <div>
+                    <h5 class="alert-heading mb-1">Питомец пропал? Действуйте быстро!</h5>
+                    <p class="mb-0">Ознакомьтесь с <a href="help.html#lost-guide" class="alert-link">руководством по поиску</a> и начните действовать немедленно</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Фильтры -->
+    <section class="filters-section py-4">
+        <div class="container">
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <select class="form-select" id="typeFilter">
+                        <option value="all">Все виды</option>
+                        <option value="dog">Собаки</option>
+                        <option value="cat">Кошки</option>
+                        <option value="bird">Птицы</option>
+                        <option value="other">Другие</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select" id="locationFilter">
+                        <option value="all">Все города</option>
+                        <option value="moscow">Москва</option>
+                        <option value="spb">Санкт-Петербург</option>
+                        <option value="novosibirsk">Новосибирск</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select" id="timeFilter">
+                        <option value="all">Любое время</option>
+                        <option value="today">Сегодня</option>
+                        <option value="week">За неделю</option>
+                        <option value="month">За месяц</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-primary w-100" onclick="filterPets()">
+                        <i class="bi bi-funnel"></i> Применить фильтры
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Список потерянных питомцев -->
+    <section class="pets-list py-5">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Карточка 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="pet-card urgent" data-type="dog" data-location="moscow" data-time="today">
+                        <div class="pet-image">
+                            <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Джек">
+                            <span class="urgent-badge">СРОЧНО</span>
+                        </div>
+                        <div class="pet-info">
+                            <div class="pet-header">
+                                <h5>Джек</h5>
+                                <span class="status-badge lost">Потерян</span>
+                            </div>
+                            <p class="pet-description">Золотистый ретривер, пропал в районе Парка Горького. На ошейнике есть адресник.</p>
+                            <div class="pet-details">
+                                <div class="detail-item">
+                                    <strong>Порода:</strong> Золотистый ретривер
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Возраст:</strong> 3 года
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Особые приметы:</strong> Белое пятно на груди
+                                </div>
+                            </div>
+                            <div class="pet-meta">
+                                <span><i class="bi bi-geo-alt"></i> Москва, Парк Горького</span>
+                                <span><i class="bi bi-clock"></i> Сегодня</span>
+                            </div>
+                            <div class="contact-info">
+                                <small class="text-muted">Контакты: +7 (999) 123-45-67</small>
+                            </div>
+                            <div class="pet-actions">
+                                <a href="#" class="btn btn-primary">Я видел этого пса</a>
+                                <a href="#" class="btn btn-outline-primary">Поделиться</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Карточка 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="pet-card" data-type="cat" data-location="spb" data-time="week">
+                        <div class="pet-image">
+                            <img src="https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Барсик">
+                        </div>
+                        <div class="pet-info">
+                            <div class="pet-header">
+                                <h5>Барсик</h5>
+                                <span class="status-badge lost">Потерян</span>
+                            </div>
+                            <p class="pet-description">Рыжий кот, пропал в центре города. Очень пугливый, может не подходить к незнакомцам.</p>
+                            <div class="pet-details">
+                                <div class="detail-item">
+                                    <strong>Порода:</strong> Дворовый кот
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Возраст:</strong> 2 года
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Особые приметы:</strong> Залом на хвосте
+                                </div>
+                            </div>
+                            <div class="pet-meta">
+                                <span><i class="bi bi-geo-alt"></i> Санкт-Петербург, Невский пр.</span>
+                                <span><i class="bi bi-clock"></i> 2 дня назад</span>
+                            </div>
+                            <div class="contact-info">
+                                <small class="text-muted">Контакты: +7 (911) 234-56-78</small>
+                            </div>
+                            <div class="pet-actions">
+                                <a href="#" class="btn btn-primary">Я видел этого кота</a>
+                                <a href="#" class="btn btn-outline-primary">Поделиться</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Карточка 3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="pet-card" data-type="bird" data-location="novosibirsk" data-time="month">
+                        <div class="pet-image">
+                            <img src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Кеша">
+                        </div>
+                        <div class="pet-info">
+                            <div class="pet-header">
+                                <h5>Кеша</h5>
+                                <span class="status-badge lost">Потерян</span>
+                            </div>
+                            <p class="pet-description">Попугай жако, улетел через открытое окно. Говорит несколько фраз, откликается на кличку.</p>
+                            <div class="pet-details">
+                                <div class="detail-item">
+                                    <strong>Вид:</strong> Попугай жако
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Возраст:</strong> 5 лет
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Особые приметы:</strong> Немного обломаны перья на хвосте
+                                </div>
+                            </div>
+                            <div class="pet-meta">
+                                <span><i class="bi bi-geo-alt"></i> Новосибирск, Заельцовский р-н</span>
+                                <span><i class="bi bi-clock"></i> 1 неделю назад</span>
+                            </div>
+                            <div class="contact-info">
+                                <small class="text-muted">Контакты: +7 (913) 456-78-90</small>
+                            </div>
+                            <div class="pet-actions">
+                                <a href="#" class="btn btn-primary">Я видел эту птицу</a>
+                                <a href="#" class="btn btn-outline-primary">Поделиться</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Пагинация -->
+            <nav class="mt-5">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">Назад</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Вперед</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Советы по поиску -->
+    <section class="tips-section py-5 bg-light">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Что делать, если питомец пропал?</h2>
+                <p>Проверенные советы, которые помогут в поисках</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="tip-card">
+                        <div class="tip-number">01</div>
+                        <h5>Немедленно начните поиски</h5>
+                        <p>Обойдите ближайшие дворы, подъезды, подвалы. Спросите соседей, дворников, прохожих.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="tip-card">
+                        <div class="tip-number">02</div>
+                        <h5>Разместите объявления</h5>
+                        <p>Расклейте объявления в районе пропажи с фотографией и контактными данными.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="tip-card">
+                        <div class="tip-number">03</div>
+                        <h5>Обратитесь в приюты</h5>
+                        <p>Позвоните в ближайшие приюты и пункты передержки, оставьте информацию о питомце.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="tip-card">
+                        <div class="tip-number">04</div>
+                        <h5>Используйте соцсети</h5>
+                        <p>Разместите информацию в местных группах и пабликах, посвященных животным.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="help.html#lost-guide" class="btn btn-primary">Подробное руководство по поиску</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-brand">
+                        <i class="bi bi-heart-pulse"></i> НайденныеПитомцы
+                    </div>
+                    <p class="footer-text">Помогаем питомцам найти дом с 2015 года. Присоединяйтесь к нашему сообществу!</p>
+                    <div class="social-links">
+                        <a href="#"><i class="bi bi-telegram"></i></a>
+                        <a href="#"><i class="bi bi-vk"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 mb-4">
+                    <h5>Навигация</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="found.html">Найдены</a></li>
+                        <li><a href="lost.html">Потеряны</a></li>
+                        <li><a href="shelters.html">Приюты</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-3 mb-4">
+                    <h5>Помощь</h5>
+                    <ul class="footer-links">
+                        <li><a href="help.html">Частые вопросы</a></li>
+                        <li><a href="help.html">Советы</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                        <li><a href="help.html">Волонтерам</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Подписка на новости</h5>
+                    <p>Узнавайте о новых найденных питомцах первыми</p>
+                    <form class="subscribe-form">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Ваш email">
+                            <button class="btn btn-primary" type="submit">Подписаться</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>&copy; 2023 НайденныеПитомцы. Все права защищены.</p>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <a href="#">Политика конфиденциальности</a>
+                        <a href="#">Условия использования</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/auth-simple.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        simpleAuth.updateUI();
+    });
+</script>
+<script src="js/auth-simple.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (window.simpleAuth) {
+            window.simpleAuth.updateUI();
+        }
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Автоматический вход при загрузке страницы
+    document.addEventListener('DOMContentLoaded', function() {
+        const guestButtons = document.getElementById('guestButtons');
+        const userButtons = document.getElementById('userButtons');
+        
+        if (guestButtons && userButtons) {
+            guestButtons.style.display = 'none';
+            userButtons.style.display = 'flex';
+        }
+    });
+
+    function logout() {
+        if (confirm('Вы уверены, что хотите выйти?')) {
+            window.location.href = 'index.html';
+        }
+    }
+</script>
+<script src="js/auth-simple.js"></script>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Найденные питомцы - Личный кабинет</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-heart-pulse"></i> НайденныеПитомцы
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="found.html">Найдены</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="lost.html">Потеряны</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="help.html">Помощь</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacts.html">Контакты</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="profile.html" class="btn btn-outline-primary me-2">
+                        <i class="bi bi-person-circle"></i> Личный кабинет
+                    </a>
+                    <a href="#" class="btn btn-primary" onclick="logout()">
+                        <i class="bi bi-box-arrow-right"></i> Выйти
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Заголовок страницы -->
+    <section class="page-header py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="display-4 fw-bold">Личный кабинет</h1>
+                    <p class="lead">Управление вашим профилем и объявлениями</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Содержимое личного кабинета -->
+    <section class="profile-section py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Боковое меню -->
+                <div class="col-lg-3 mb-4">
+                    <div class="profile-sidebar">
+                        <div class="profile-info text-center mb-4">
+                            <div class="profile-avatar mb-3">
+                                <i class="bi bi-person-circle display-1 text-primary"></i>
+                            </div>
+                            <h5 id="profileName">Пользователь Тестовый</h5>
+                            <p class="text-muted" id="profileEmail">user@example.com</p>
+                        </div>
+                        
+                        <div class="list-group">
+                            <a href="#profile" class="list-group-item list-group-item-action active">
+                                <i class="bi bi-person me-2"></i>Профиль
+                            </a>
+                            <a href="#ads" class="list-group-item list-group-item-action">
+                                <i class="bi bi-list-ul me-2"></i>Мои объявления
+                            </a>
+                            <a href="#settings" class="list-group-item list-group-item-action">
+                                <i class="bi bi-gear me-2"></i>Настройки
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Основное содержимое -->
+                <div class="col-lg-9">
+                    <!-- Вкладка профиля -->
+                    <div id="profile" class="profile-tab">
+                        <div class="profile-card">
+                            <h4 class="mb-4">Информация профиля</h4>
+                            <form>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Имя</label>
+                                        <input type="text" class="form-control" value="Пользователь">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Фамилия</label>
+                                        <input type="text" class="form-control" value="Тестовый">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" class="form-control" value="user@example.com">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Телефон</label>
+                                        <input type="tel" class="form-control" value="+7 (999) 123-45-67">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Город</label>
+                                        <select class="form-select">
+                                            <option>Москва</option>
+                                            <option>Санкт-Петербург</option>
+                                            <option>Новосибирск</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Вкладка объявлений -->
+                    <div id="ads" class="profile-tab" style="display: none;">
+                        <div class="profile-card">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h4 class="mb-0">Мои объявления</h4>
+                                <a href="add-pet.html" class="btn btn-primary">
+                                    <i class="bi bi-plus-circle me-2"></i>Добавить объявление
+                                </a>
+                            </div>
+                            
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle me-2"></i>
+                                У вас пока нет активных объявлений
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Вкладка настроек -->
+                    <div id="settings" class="profile-tab" style="display: none;">
+                        <div class="profile-card">
+                            <h4 class="mb-4">Настройки аккаунта</h4>
+                            
+                            <div class="mb-4">
+                                <h5>Уведомления</h5>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="notifyEmail" checked>
+                                    <label class="form-check-label" for="notifyEmail">
+                                        Email уведомления
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="notifySMS" checked>
+                                    <label class="form-check-label" for="notifySMS">
+                                        SMS уведомления
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <h5>Безопасность</h5>
+                                <a href="change-password.html" class="btn btn-outline-primary">
+                                    <i class="bi bi-shield-lock me-2"></i>Сменить пароль
+                                </a>
+                            </div>
+
+                            <div class="alert alert-warning">
+                                <h6><i class="bi bi-exclamation-triangle me-2"></i>Опасная зона</h6>
+                                <p class="mb-2">Удаление аккаунта невозможно отменить.</p>
+                                <button class="btn btn-outline-danger btn-sm">
+                                    <i class="bi bi-trash me-2"></i>Удалить аккаунт
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-brand">
+                        <i class="bi bi-heart-pulse"></i> НайденныеПитомцы
+                    </div>
+                    <p class="footer-text">Помогаем питомцам найти дом с 2015 года. Присоединяйтесь к нашему сообществу!</p>
+                    <div class="social-links">
+                        <a href="#"><i class="bi bi-telegram"></i></a>
+                        <a href="#"><i class="bi bi-vk"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 mb-4">
+                    <h5>Навигация</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="found.html">Найдены</a></li>
+                        <li><a href="lost.html">Потеряны</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-3 mb-4">
+                    <h5>Помощь</h5>
+                    <ul class="footer-links">
+                        <li><a href="help.html">Частые вопросы</a></li>
+                        <li><a href="help.html">Советы</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Подписка на новости</h5>
+                    <p>Узнавайте о новых найденных питомцах первыми</p>
+                    <form class="subscribe-form">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Ваш email">
+                            <button class="btn btn-primary" type="submit">Подписаться</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>&copy; 2023 НайденныеПитомцы. Все права защищены.</p>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <a href="#">Политика конфиденциальности</a>
+                        <a href="#">Условия использования</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/auth-simple.js"></script>
+    <script>
+        // Загрузка данных пользователя
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = window.simpleAuth.getCurrentUser();
+            
+            // Заполняем данные пользователя
+            document.getElementById('profileName').textContent = `${user.firstName} ${user.lastName}`;
+            document.getElementById('profileEmail').textContent = user.email;
+            
+            // Заполняем форму профиля
+            document.querySelector('#profile input[type="text"]').value = user.firstName;
+            document.querySelectorAll('#profile input[type="text"]')[1].value = user.lastName;
+            document.querySelector('#profile input[type="email"]').value = user.email;
+            document.querySelector('#profile input[type="tel"]').value = user.phone;
+            document.querySelector('#profile select').value = user.city;
+    
+            // Переключение между вкладками
+            document.querySelectorAll('.list-group-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    document.querySelectorAll('.list-group-item').forEach(i => {
+                        i.classList.remove('active');
+                    });
+                    
+                    this.classList.add('active');
+                    
+                    document.querySelectorAll('.profile-tab').forEach(tab => {
+                        tab.style.display = 'none';
+                    });
+                    
+                    const targetId = this.getAttribute('href').substring(1);
+                    document.getElementById(targetId).style.display = 'block';
+                });
+            });
+    
+            // Обработка сохранения профиля
+            document.querySelector('#profile form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Изменения сохранены!');
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Автоматический вход при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            const guestButtons = document.getElementById('guestButtons');
+            const userButtons = document.getElementById('userButtons');
+            
+            if (guestButtons && userButtons) {
+                guestButtons.style.display = 'none';
+                userButtons.style.display = 'flex';
+            }
+        });
+    
+        function logout() {
+            if (confirm('Вы уверены, что хотите выйти?')) {
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+    <script src="js/auth-simple.js"></script>
+</body>
+</html>

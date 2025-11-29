@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Найденные питомцы - Помощь</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-heart-pulse"></i> НайденныеПитомцы
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="found.html">Найдены</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="lost.html">Потеряны</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="help.html">Помощь</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacts.html">Контакты</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <!-- Для неавторизованных пользователей -->
+                    <div id="guestButtons">
+                        <a href="login.html" class="btn btn-outline-primary">
+                            <i class="bi bi-person"></i> Войти
+                        </a>
+                    </div>
+                    
+                    <!-- Для авторизованных пользователей -->
+                    <div id="userButtons" style="display: none;">
+                        <a href="profile.html" class="btn btn-outline-primary me-2">
+                            <i class="bi bi-person-circle"></i> Личный кабинет
+                        </a>
+                        <a href="#" class="btn btn-primary" onclick="logout()">
+                            <i class="bi bi-box-arrow-right"></i> Выйти
+                        </a>
+                    </div>
+                </div>
+    </nav>
+
+    <!-- Заголовок страницы -->
+    <section class="page-header py-5 bg-info text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="display-4 fw-bold">Помощь и советы</h1>
+                    <p class="lead">Полезная информация для владельцев животных и волонтеров</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Навигация по разделам помощи -->
+    <section class="help-nav py-4 bg-light">
+        <div class="container">
+            <div class="row g-3 justify-content-center">
+                <div class="col-auto">
+                    <a href="#faq" class="btn btn-outline-primary">Частые вопросы</a>
+                </div>
+                <div class="col-auto">
+                    <a href="#lost-guide" class="btn btn-outline-primary">Поиск питомца</a>
+                </div>
+                <div class="col-auto">
+                    <a href="#found-guide" class="btn btn-outline-primary">Нашли питомца</a>
+                </div>
+                <div class="col-auto">
+                    <a href="#volunteer" class="btn btn-outline-primary">Волонтерам</a>
+                </div>
+                <div class="col-auto">
+                    <a href="#care" class="btn btn-outline-primary">Уход за животными</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Частые вопросы -->
+    <section id="faq" class="faq-section py-5">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Часто задаваемые вопросы</h2>
+                <p>Ответы на самые популярные вопросы</p>
+            </div>
+
+            <div class="accordion" id="faqAccordion">
+                <!-- Вопрос 1 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            Что делать, если я нашел бездомное животное?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <ol>
+                                <li>Убедитесь, что животное действительно нуждается в помощи</li>
+                                <li>Проверьте, есть ли ошейник с контактами владельца</li>
+                                <li>Сфотографируйте животное и разместите объявление на нашем сайте</li>
+                                <li>Если возможно, отвезите к ветеринару для проверки чипа</li>
+                                <li>Обеспечьте временное убежище или обратитесь в приют</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Вопрос 2 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            Как правильно искать пропавшего питомца?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p><strong>Немедленные действия:</strong></p>
+                            <ul>
+                                <li>Обойдите район пропажи, спросите соседей и прохожих</li>
+                                <li>Разместите объявления в социальных сетях и на нашем сайте</li>
+                                <li>Обратитесь в ближайшие приюты и ветеринарные клиники</li>
+                                <li>Разложите вещи с запахом питомца в районе пропажи</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Вопрос 3 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            Как стать волонтером в приюте?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>Чтобы стать волонтером:</p>
+                            <ol>
+                                <li>Выберите приют из нашего <a href="shelters.html">списка</a></li>
+                                <li>Свяжитесь с администрацией приюта</li>
+                                <li>Обсудите график и виды помощи, которые вы можете оказывать</li>
+                                <li>Пройдите краткий инструктаж</li>
+                                <li>Начните с простых задач: выгул, кормление, уборка</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Вопрос 4 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            Какие документы нужны для передачи животного в новый дом?
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>Рекомендуемые документы:</p>
+                            <ul>
+                                <li>Договор о передаче животного</li>
+                                <li>Ветеринарный паспорт с отметками о прививках</li>
+                                <li>Информация о проведенных обработках от паразитов</li>
+                                <li>Контактные данные предыдущего владельца/приюта</li>
+                                <li>Рекомендации по уходу и содержанию</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Руководство по поиску потерянного питомца -->
+    <section id="lost-guide" class="guide-section py-5 bg-light">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Руководство по поиску потерянного питомца</h2>
+                <p>Пошаговая инструкция для быстрого возвращения домой</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="guide-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h5>Первые 2 часа</h5>
+                            <ul>
+                                <li>Тщательно обыщите дом/квартиру</li>
+                                <li>Опросите соседей и прохожих</li>
+                                <li>Осмотрите ближайшие дворы и подъезды</li>
+                                <li>Проверьте привычные маршруты прогулок</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="guide-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h5>Первые 6 часов</h5>
+                            <ul>
+                                <li>Разместите объявление на нашем сайте</li>
+                                <li>Оповестите местные группы в соцсетях</li>
+                                <li>Распечатайте и расклейте объявления</li>
+                                <li>Обратитесь в ближайшие приюты</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="guide-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h5>Первые 24 часа</h5>
+                            <ul>
+                                <li>Обзвоните все ветеринарные клиники</li>
+                                <li>Проверьте службы отлова животных</li>
+                                <li>Разместите информацию в местных СМИ</li>
+                                <li>Организуйте поисковые группы</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="guide-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h5>Дальнейшие действия</h5>
+                            <ul>
+                                <li>Не прекращайте поиски в течение 2-3 недель</li>
+                                <li>Регулярно обновляйте объявления</li>
+                                <li>Используйте соцсети для напоминаний</li>
+                                <li>Рассмотрите возможность вознаграждения</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Информация для волонтеров -->
+    <section id="volunteer" class="volunteer-section py-5">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Информация для волонтеров</h2>
+                <p>Присоединяйтесь к нашей команде помощи животным</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="volunteer-role text-center">
+                        <div class="role-icon">
+                            <i class="bi bi-house-heart"></i>
+                        </div>
+                        <h5>Временная передержка</h5>
+                        <p>Предоставьте временный дом животному до нахождения постоянных хозяев</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">Узнать больше</a>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="volunteer-role text-center">
+                        <div class="role-icon">
+                            <i class="bi bi-truck"></i>
+                        </div>
+                        <h5>Транспортировка</h5>
+                        <p>Помогайте перевозить животных к ветеринару, в приюты или новым хозяевам</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">Узнать больше</a>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="volunteer-role text-center">
+                        <div class="role-icon">
+                            <i class="bi bi-camera"></i>
+                        </div>
+                        <h5>Фотография</h5>
+                        <p>Создавайте качественные фотографии животных для пристройства</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">Узнать больше</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <div class="volunteer-cta">
+                    <h4>Готовы стать волонтером?</h4>
+                    <p class="text-muted">Заполните анкету и мы свяжемся с вами в ближайшее время</p>
+                    <a href="#" class="btn btn-primary btn-lg">Заполнить анкету волонтера</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-brand">
+                        <i class="bi bi-heart-pulse"></i> НайденныеПитомцы
+                    </div>
+                    <p class="footer-text">Помогаем питомцам найти дом с 2015 года. Присоединяйтесь к нашему сообществу!</p>
+                    <div class="social-links">
+                        <a href="#"><i class="bi bi-telegram"></i></a>
+                        <a href="#"><i class="bi bi-vk"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 mb-4">
+                    <h5>Навигация</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="found.html">Найдены</a></li>
+                        <li><a href="lost.html">Потеряны</a></li>
+                        <li><a href="shelters.html">Приюты</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-3 mb-4">
+                    <h5>Помощь</h5>
+                    <ul class="footer-links">
+                        <li><a href="help.html">Частые вопросы</a></li>
+                        <li><a href="help.html">Советы</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                        <li><a href="help.html">Волонтерам</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Подписка на новости</h5>
+                    <p>Узнавайте о новых найденных питомцах первыми</p>
+                    <form class="subscribe-form">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Ваш email">
+                            <button class="btn btn-primary" type="submit">Подписаться</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>&copy; 2023 НайденныеПитомцы. Все права защищены.</p>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <a href="#">Политика конфиденциальности</a>
+                        <a href="#">Условия использования</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/auth-simple.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        simpleAuth.updateUI();
+    });
+</script>
+<script src="js/auth-simple.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (window.simpleAuth) {
+            window.simpleAuth.updateUI();
+        }
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Автоматический вход при загрузке страницы
+    document.addEventListener('DOMContentLoaded', function() {
+        const guestButtons = document.getElementById('guestButtons');
+        const userButtons = document.getElementById('userButtons');
+        
+        if (guestButtons && userButtons) {
+            guestButtons.style.display = 'none';
+            userButtons.style.display = 'flex';
+        }
+    });
+
+    function logout() {
+        if (confirm('Вы уверены, что хотите выйти?')) {
+            window.location.href = 'index.html';
+        }
+    }
+</script>
+<script src="js/auth-simple.js"></script>
+</body>
+</html>
